@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="history_title">Capture history</title>
+  <link rel="icon" href="../../icons/icon-32.png">
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="history.css">
+</head>
+<body>
+  <header class="page-header">
+    <div class="page-header-text">
+      <h1 data-i18n="history_title">Capture history</h1>
+      <p class="muted"><span id="count"></span> <span id="retention"></span></p>
+    </div>
+    <button class="btn btn-danger" id="clearAll" type="button" hidden>
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg>
+      <span data-i18n="history_clear">Delete all</span>
+    </button>
+  </header>
+
+  <main>
+    <p id="empty" class="empty" hidden data-i18n="history_empty">No captures yet.</p>
+    <ul id="list" class="grid" aria-live="polite"></ul>
+  </main>
+
+  <template id="itemTemplate">
+    <li class="card">
+      <a class="thumb" target="_self"><img alt=""></a>
+      <div class="card-body">
+        <h2 class="card-title"></h2>
+        <p class="muted card-meta"></p>
+        <div class="card-actions">
+          <a class="btn btn-primary open" data-i18n="history_open">Open</a>
+          <button class="btn btn-danger delete" type="button" data-i18n="history_delete">Delete</button>
+        </div>
+      </div>
+    </li>
+  </template>
+
+  <script type="module" src="history.js"></script>
+</body>
+</html>

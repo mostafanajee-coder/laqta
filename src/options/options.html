@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="options_title">Laqta options</title>
+  <link rel="icon" href="../../icons/icon-32.png">
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <main class="options">
+    <header class="options-header">
+      <img src="../../icons/icon-48.png" width="36" height="36" alt="">
+      <h1 data-i18n="options_title">Laqta options</h1>
+    </header>
+
+    <form id="form" novalidate>
+      <section class="card">
+        <h2 data-i18n="options_section_language">Language</h2>
+        <div class="field">
+          <label for="language" data-i18n="options_language">Interface language</label>
+          <select id="language" name="language">
+            <option value="auto" data-i18n="options_language_auto">Match the browser</option>
+            <option value="en">English</option>
+            <option value="ar">العربية</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 data-i18n="options_section_output">Output</h2>
+        <div class="field">
+          <span class="field-label" data-i18n="options_format">Default image format</span>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="format" value="png"> <span data-i18n="options_format_png">PNG (lossless)</span></label>
+            <label class="choice"><input type="radio" name="format" value="jpg"> <span data-i18n="options_format_jpg">JPG (smaller files)</span></label>
+          </div>
+        </div>
+        <div class="field">
+          <label for="jpegQuality"><span data-i18n="options_jpeg_quality">JPG quality</span>: <output id="jpegQualityValue" for="jpegQuality">92%</output></label>
+          <input type="range" id="jpegQuality" name="jpegQuality" min="50" max="100" step="1">
+        </div>
+        <div class="field">
+          <label class="choice"><input type="checkbox" id="saveAsDialog" name="saveAsDialog"> <span data-i18n="options_save_as_dialog">Ask where to save each file</span></label>
+        </div>
+        <div class="field">
+          <label for="filenameTemplate" data-i18n="options_filename_template">Filename template</label>
+          <input type="text" id="filenameTemplate" name="filenameTemplate" spellcheck="false" dir="ltr">
+          <p class="hint muted" data-i18n="options_filename_hint">Available tokens…</p>
+          <p class="hint"><span class="muted" data-i18n="options_filename_preview">Preview</span>: <code id="filenamePreview" dir="ltr"></code></p>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 data-i18n="options_section_capture">Capturing</h2>
+        <div class="field">
+          <label class="choice"><input type="checkbox" id="hideFixedElements" name="hideFixedElements"> <span data-i18n="options_hide_fixed">Hide fixed headers after the first screen</span></label>
+        </div>
+        <div class="field">
+          <label for="captureDelay" data-i18n="options_capture_delay">Delay before capturing</label>
+          <div class="inline">
+            <input type="number" id="captureDelay" name="captureDelay" min="0" max="60" step="1" class="short">
+            <span data-i18n="common_seconds">seconds</span>
+          </div>
+          <p class="hint muted" data-i18n="options_capture_delay_hint">Gives you time to open menus.</p>
+        </div>
+        <div class="field">
+          <span class="field-label" data-i18n="options_shortcuts">Keyboard shortcuts</span>
+          <ul id="shortcuts" class="shortcuts"></ul>
+          <p class="hint muted" data-i18n="options_shortcuts_hint">Shortcuts are managed by the browser.</p>
+          <button class="btn" type="button" id="openShortcuts" data-i18n="options_shortcuts_open">Change shortcuts…</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 data-i18n="options_section_history">History</h2>
+        <div class="field">
+          <label for="retentionDays" data-i18n="options_retention">Keep captures for</label>
+          <select id="retentionDays" name="retentionDays">
+            <option value="7" data-i18n="options_retention_7">7 days</option>
+            <option value="30" data-i18n="options_retention_30">30 days</option>
+            <option value="90" data-i18n="options_retention_90">90 days</option>
+            <option value="365" data-i18n="options_retention_365">1 year</option>
+            <option value="0" data-i18n="options_retention_forever">Forever</option>
+          </select>
+        </div>
+      </section>
+
+      <footer class="options-footer">
+        <span id="savedMessage" class="saved" role="status" aria-live="polite"></span>
+        <button class="btn" type="button" id="reset" data-i18n="options_reset">Restore defaults</button>
+        <button class="btn btn-primary" type="submit" data-i18n="options_save">Save</button>
+      </footer>
+    </form>
+  </main>
+  <script type="module" src="options.js"></script>
+</body>
+</html>

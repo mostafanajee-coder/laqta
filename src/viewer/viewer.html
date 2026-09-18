@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="viewer_title">Screenshot</title>
+  <link rel="icon" href="../../icons/icon-32.png">
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="viewer.css">
+</head>
+<body>
+  <header class="toolbar" id="toolbar">
+    <div class="toolbar-info">
+      <img src="../../icons/icon-32.png" width="24" height="24" alt="">
+      <div class="info-text">
+        <h1 id="pageTitle" data-i18n="viewer_loading">Loading…</h1>
+        <p class="muted">
+          <span id="dimensions"></span>
+          <a id="sourceLink" href="#" target="_blank" rel="noopener noreferrer" hidden data-i18n="viewer_source">Source page</a>
+        </p>
+      </div>
+    </div>
+    <div class="toolbar-actions" id="actions" hidden>
+      <button class="btn btn-primary" id="savePng" type="button">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/></svg>
+        <span data-i18n="viewer_save_png">Save PNG</span>
+      </button>
+      <button class="btn" id="saveJpg" type="button">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/></svg>
+        <span data-i18n="viewer_save_jpg">Save JPG</span>
+      </button>
+      <button class="btn" id="savePdf" type="button">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 13h6M9 17h6"/></svg>
+        <span data-i18n="viewer_save_pdf">Save PDF</span>
+      </button>
+      <button class="btn" id="copy" type="button">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+        <span data-i18n="viewer_copy">Copy</span>
+      </button>
+      <button class="btn" id="print" type="button">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8V3h10v5M7 17H4v-6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v6h-3"/><rect x="7" y="14" width="10" height="7"/></svg>
+        <span data-i18n="viewer_print">Print</span>
+      </button>
+      <a class="btn" href="../history/history.html">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <span data-i18n="viewer_history">History</span>
+      </a>
+    </div>
+  </header>
+
+  <p id="notice" class="notice" hidden></p>
+
+  <main class="stage" id="stage">
+    <p id="missing" class="missing" hidden data-i18n="viewer_not_found">This capture is no longer available.</p>
+    <img id="image" alt="" hidden>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="viewer.js"></script>
+</body>
+</html>

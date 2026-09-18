@@ -1,0 +1,64 @@
+{
+  "manifest_version": 3,
+  "name": "__MSG_app_name__",
+  "short_name": "Laqta",
+  "description": "__MSG_app_description__",
+  "version": "1.0.0",
+  "default_locale": "en",
+  "minimum_chrome_version": "116",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "action": {
+    "default_title": "__MSG_app_name__",
+    "default_popup": "src/popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png"
+    }
+  },
+  "background": {
+    "service_worker": "src/background/service-worker.js",
+    "type": "module"
+  },
+  "options_ui": {
+    "page": "src/options/options.html",
+    "open_in_tab": true
+  },
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "downloads",
+    "contextMenus"
+  ],
+  "commands": {
+    "capture-full": {
+      "description": "__MSG_cmd_capture_full__",
+      "suggested_key": {
+        "default": "Alt+Shift+1",
+        "mac": "Command+Shift+1"
+      }
+    },
+    "capture-visible": {
+      "description": "__MSG_cmd_capture_visible__",
+      "suggested_key": {
+        "default": "Alt+Shift+2",
+        "mac": "Command+Shift+2"
+      }
+    },
+    "capture-selection": {
+      "description": "__MSG_cmd_capture_selection__",
+      "suggested_key": {
+        "default": "Alt+Shift+3",
+        "mac": "Command+Shift+3"
+      }
+    }
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none';"
+  }
+}

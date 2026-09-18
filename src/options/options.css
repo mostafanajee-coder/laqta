@@ -1,0 +1,56 @@
+.options { max-width: 720px; margin: 0 auto; padding: 24px 20px 120px; display: grid; gap: 16px; }
+
+.options-header { display: flex; align-items: center; gap: 12px; }
+
+form { display: grid; gap: 16px; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px 20px;
+  display: grid;
+  gap: 16px;
+}
+
+.field { display: grid; gap: 6px; }
+.field > label, .field-label { font-weight: 600; }
+.hint { font-size: 12px; }
+code { font-family: ui-monospace, Consolas, monospace; font-size: 12px; background: var(--surface-2); padding: 2px 6px; border-radius: 4px; }
+
+input[type="text"], input[type="number"], select {
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  max-width: 100%;
+}
+input.short { width: 90px; }
+input[type="range"] { width: 100%; max-width: 320px; accent-color: var(--accent); }
+input[type="checkbox"], input[type="radio"] { accent-color: var(--accent); width: 16px; height: 16px; margin: 0; }
+
+.choices { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+.choice { display: inline-flex; align-items: center; gap: 8px; font-weight: 400; cursor: pointer; }
+.inline { display: flex; align-items: center; gap: 8px; }
+
+.shortcuts { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 13px; }
+.shortcuts li { display: flex; justify-content: space-between; gap: 12px; }
+.shortcuts kbd {
+  font-family: inherit; font-size: 12px; border: 1px solid var(--border); border-radius: 6px;
+  padding: 1px 6px; background: var(--surface-2);
+}
+
+.options-footer {
+  position: fixed;
+  inset-block-end: 0;
+  inset-inline: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: var(--surface);
+  border-block-start: 1px solid var(--border);
+}
+.saved { color: var(--success); margin-inline-end: auto; font-weight: 600; }

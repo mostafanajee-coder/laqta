@@ -1,0 +1,17 @@
+{
+  "name": "laqta",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Free, open-source full page screenshot extension (Manifest V3).",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test \"test/**/*.test.mjs\"",
+    "validate": "node tools/validate.mjs",
+    "icons": "node tools/make-icons.mjs",
+    "check": "npm run validate && npm test"
+  },
+  "license": "MIT"
+}
