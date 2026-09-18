@@ -9,7 +9,7 @@ test("returns defaults for an empty object", () => {
 test("clamps and coerces values", () => {
   const result = normalizeSettings({
     format: "gif", jpegQuality: 5, captureDelay: -3, retentionDays: "90", counter: 0,
-    saveAsDialog: "yes", hideFixedElements: false, filenameTemplate: "   ", language: "../../etc",
+    saveAsDialog: "yes", hideFixedElements: false, filenameTemplate: "   ",
   });
   assert.equal(result.format, "png");
   assert.equal(result.jpegQuality, 1);
@@ -19,9 +19,8 @@ test("clamps and coerces values", () => {
   assert.equal(result.saveAsDialog, false);
   assert.equal(result.hideFixedElements, false);
   assert.equal(result.filenameTemplate, DEFAULT_SETTINGS.filenameTemplate);
-  assert.equal(result.language, "auto");
 });
 
 test("only returns the requested keys for partial updates", () => {
-  assert.deepEqual(normalizeSettings({ language: "ar", format: "jpg" }, ["language"]), { language: "ar" });
+  assert.deepEqual(normalizeSettings({ counter: 7, format: "jpg" }, ["counter"]), { counter: 7 });
 });

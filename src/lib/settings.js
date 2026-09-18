@@ -8,7 +8,6 @@ export const DEFAULT_SETTINGS = Object.freeze({
   hideFixedElements: true,    // hide position: fixed/sticky after the first tile
   captureDelay: 0,            // seconds
   retentionDays: 30,          // 0 = keep forever
-  language: "auto",           // "auto" | "en" | "ar"
   counter: 1,                 // value of the {n} token
 });
 
@@ -56,9 +55,6 @@ export function normalizeSettings(input, keys = Object.keys(DEFAULT_SETTINGS)) {
         break;
       case "filenameTemplate":
         result[key] = typeof value === "string" && value.trim() ? value.trim() : fallback;
-        break;
-      case "language":
-        result[key] = typeof value === "string" && /^[a-z]{2,3}(?:[-_][A-Za-z]{2,4})?$|^auto$/.test(value) ? value : fallback;
         break;
       default:
         result[key] = value === undefined ? fallback : value;

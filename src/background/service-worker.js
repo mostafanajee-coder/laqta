@@ -1,7 +1,7 @@
 /** Laqta service worker: entry points (popup, commands, context menus, selection messages). */
 
 import { runCapture, captureSelection, isBusy, isCapturableUrl, UnsupportedPageError } from "./capture.js";
-import { loadCatalog, resolveLanguage, formatMessage } from "../lib/i18n.js";
+import { t } from "../lib/i18n.js";
 
 const MENU_IDS = {
   root: "laqta-root",
@@ -22,10 +22,6 @@ chrome.runtime.onInstalled.addListener(() => {
 
 chrome.runtime.onStartup.addListener(() => {
   rebuildContextMenus();
-});
-
-chrome.storage.onChanged.addListener((changes, area) => {
-  if (area === "local" && changes.language) rebuildContextMenus();
 });
 
 chrome.commands.onCommand.addListener(async (command, tab) => {
@@ -65,10 +61,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     captureSelection(sender.tab, message)
       .then((id) => openViewer(id, sender.tab))
       .catch(reportError);
-    return false;
-  }
-
-  if (message.type === "selection-cancelled") {
     return false;
   }
 
@@ -113,11 +105,7 @@ async function setBadge(tabId, text) {
 }
 
 async function rebuildContextMenus() {
-  const language = await resolveLanguage();
-  const catalog = await loadCatalog(language);
-  const t = (key) => formatMessage(catalog[key]) || key;
   const contexts = ["page", "frame", "selection", "image", "link"];
-
   await new Promise((resolve) => chrome.contextMenus.removeAll(resolve));
   chrome.contextMenus.create({ id: MENU_IDS.root, title: t("menu_root"), contexts });
   chrome.contextMenus.create({ id: MENU_IDS.full, parentId: MENU_IDS.root, title: t("cmd_capture_full"), contexts });

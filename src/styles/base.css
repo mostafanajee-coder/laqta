@@ -1,4 +1,4 @@
-/* Shared design tokens and primitives. Uses logical properties so RTL works without overrides. */
+/* Shared design tokens and primitives. */
 
 :root {
   color-scheme: light dark;
@@ -15,7 +15,7 @@
   --success: #16a34a;
   --radius: 10px;
   --shadow: 0 1px 2px rgba(15, 23, 42, 0.06), 0 8px 24px rgba(15, 23, 42, 0.06);
-  --font: "Segoe UI", system-ui, -apple-system, "Noto Sans Arabic", "Cairo", sans-serif;
+  --font: "Segoe UI", system-ui, -apple-system, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -105,7 +105,6 @@ button, select, input { font: inherit; color: inherit; }
   z-index: 10;
   max-inline-size: min(90vw, 480px);
 }
-[dir="rtl"] .toast { transform: translateX(50%); }
 .toast.show { opacity: 1; }
 .toast.error { background: var(--danger); color: #fff; }
 

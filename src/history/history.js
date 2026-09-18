@@ -1,4 +1,4 @@
-import { initI18n, t, localizeDom, onLanguageChange, getCurrentLanguage } from "../lib/i18n.js";
+import { initI18n, t, localizeDom } from "../lib/i18n.js";
 import { listCaptures, deleteCapture, clearCaptures } from "../lib/db.js";
 import { getSettings } from "../lib/settings.js";
 import { domainOf } from "../lib/filename.js";
@@ -18,7 +18,7 @@ function viewerUrl(id) {
 
 function formatDate(timestamp) {
   try {
-    return new Intl.DateTimeFormat(getCurrentLanguage(), { dateStyle: "medium", timeStyle: "short" }).format(new Date(timestamp));
+    return new Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeStyle: "short" }).format(new Date(timestamp));
   } catch {
     return new Date(timestamp).toLocaleString();
   }
@@ -63,13 +63,12 @@ async function render() {
 }
 
 async function main() {
-  await initI18n();
+  initI18n();
   clearAll.addEventListener("click", async () => {
     if (!confirm(t("history_confirm_clear"))) return;
     await clearCaptures();
     await render();
   });
-  onLanguageChange(() => render());
   await render();
 }
 

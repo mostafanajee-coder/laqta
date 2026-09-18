@@ -1,10 +1,9 @@
-import { initI18n, t, localizeDom, onLanguageChange } from "../lib/i18n.js";
+import { initI18n, t } from "../lib/i18n.js";
 import { getSettings, saveSettings, resetSettings, DEFAULT_SETTINGS } from "../lib/settings.js";
 import { buildFilename } from "../lib/filename.js";
 
 const form = document.getElementById("form");
 const fields = {
-  language: document.getElementById("language"),
   jpegQuality: document.getElementById("jpegQuality"),
   jpegQualityValue: document.getElementById("jpegQualityValue"),
   saveAsDialog: document.getElementById("saveAsDialog"),
@@ -20,7 +19,6 @@ const fields = {
 let savedTimer = 0;
 
 function fill(settings) {
-  fields.language.value = settings.language;
   form.elements.format.value = settings.format;
   fields.jpegQuality.value = String(Math.round(settings.jpegQuality * 100));
   fields.saveAsDialog.checked = settings.saveAsDialog;
@@ -33,7 +31,6 @@ function fill(settings) {
 
 function read() {
   return {
-    language: fields.language.value,
     format: form.elements.format.value,
     jpegQuality: Number(fields.jpegQuality.value) / 100,
     saveAsDialog: fields.saveAsDialog.checked,
@@ -74,16 +71,12 @@ async function renderShortcuts() {
 }
 
 async function main() {
-  await initI18n();
+  initI18n();
   fill(await getSettings());
   await renderShortcuts();
 
   fields.jpegQuality.addEventListener("input", updateDerived);
   fields.filenameTemplate.addEventListener("input", updateDerived);
-
-  // Language applies immediately so the page re-localizes itself.
-  fields.language.addEventListener("change", () => saveSettings({ language: fields.language.value }));
-  onLanguageChange(() => { localizeDom(); renderShortcuts(); });
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();

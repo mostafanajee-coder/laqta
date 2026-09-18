@@ -1,12 +1,6 @@
-# Laqta (لقطة) — Full Page Screenshot
+# Laqta — Full Page Screenshot
 
-<p dir="rtl">
-
-إضافة متصفح مجانية ومفتوحة المصدر (Manifest V3) لالتقاط لقطات الشاشة: الصفحة كاملة، أو الجزء المرئي، أو منطقة محددة. تُحفظ اللقطة بصيغة PNG أو JPG أو PDF، أو تُنسخ إلى الحافظة، أو تُطبع. الواجهة متاحة بالعربية والإنجليزية مع دعم كامل للاتجاه من اليمين إلى اليسار.
-
-</p>
-
-A free, open-source browser extension (Manifest V3) that captures the full page, the visible part, or a selected area, and saves it as PNG, JPG, or PDF, copies it, or prints it. The interface is available in Arabic and English with full right-to-left support.
+A free, open-source browser extension (Manifest V3) that captures the full page, the visible part, or a selected area, and saves it as PNG, JPG, or PDF, copies it to the clipboard, or prints it.
 
 ## Features
 
@@ -17,7 +11,6 @@ A free, open-source browser extension (Manifest V3) that captures the full page,
 - **History** of captures stored locally in IndexedDB, with configurable retention.
 - **Filename templates** with tokens such as `{title}`, `{domain}`, `{date}`, `{time}`, `{n}`.
 - **Keyboard shortcuts** and a right-click context menu.
-- **Arabic and English** interface; the language can follow the browser or be chosen in Options.
 - Light and dark themes.
 - No network requests, no analytics, no accounts. Only `activeTab`, `scripting`, `storage`, `downloads`, and `contextMenus` permissions.
 
@@ -40,7 +33,7 @@ Shortcuts (changeable at `chrome://extensions/shortcuts`):
 There is no build step; the extension runs directly from the source.
 
 ```bash
-npm run validate   # static checks: manifest, locales, HTML, JS syntax, CSP rules
+npm run validate   # static checks: manifest, locale catalog, HTML, JS syntax, CSP rules
 npm test           # unit tests (node --test)
 npm run icons      # regenerate icons/*.png from tools/make-icons.mjs
 ```
@@ -51,21 +44,15 @@ Both checks run in GitHub Actions on every push.
 
 ```
 manifest.json
-_locales/{en,ar}/messages.json   translations
+_locales/en/messages.json        UI strings (chrome.i18n)
 src/background/                  service worker, capture orchestration, injected page functions
 src/content/selection.js         area-selection overlay
 src/lib/                         pure modules: i18n, settings, filename, pdf, tiles, db, image
 src/popup/  src/options/  src/viewer/  src/history/   extension pages
-src/styles/base.css              shared design tokens (logical properties for RTL)
+src/styles/base.css              shared design tokens
 tools/                           validator and icon generator
 test/                            unit tests for the pure modules
 ```
-
-### Adding a language
-
-1. Copy `_locales/en/messages.json` to `_locales/<code>/messages.json` and translate the messages.
-2. Add the code to `SUPPORTED_LANGUAGES` in `src/lib/i18n.js` and an `<option>` in `src/options/options.html`.
-3. Run `npm run validate`; it fails if any key is missing or a placeholder differs.
 
 ## Limitations
 

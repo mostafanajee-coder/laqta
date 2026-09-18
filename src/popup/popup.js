@@ -44,7 +44,7 @@ async function requestCapture(mode) {
 }
 
 async function main() {
-  await initI18n();
+  initI18n();
   await fillShortcuts();
 
   for (const button of buttons) {

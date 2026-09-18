@@ -107,7 +107,7 @@ function render() {
 }
 
 async function main() {
-  await initI18n();
+  initI18n();
   const id = new URLSearchParams(location.search).get("id");
   capture = id ? await getCapture(id) : null;
   if (!capture) {
